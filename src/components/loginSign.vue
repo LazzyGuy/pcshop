@@ -13,14 +13,14 @@
           <div class="field">
             <label class="label">Name</label>
             <div class="control">
-              <input class="input" type="text" placeholder="Full Name">
+              <input class="input is-dark" type="text" placeholder="Full Name">
             </div>
           </div>
 
           <div class="field">
             <label class="label">Email</label>
             <div class="control has-icons-left">
-              <input class="input" type="email" placeholder="Email">
+              <input class="input is-dark" type="email" placeholder="Email">
               <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
               </span>
@@ -33,12 +33,12 @@
               <div class="field is-expanded">
                 <div class="field has-addons">
                   <p class="control">
-                    <a class="button is-static">
+                    <a class="button is-static is-dark">
                       +91
                     </a>
                   </p>
                   <p class="control is-expanded">
-                    <input class="input" type="tel" placeholder="Your phone number">
+                    <input class="input is-dark" type="tel" placeholder="Your phone number">
                   </p>
                 </div>
               </div>
@@ -48,7 +48,7 @@
           <div class="field">
             <label class="label">Address</label>
             <div class="control">
-              <textarea class="textarea" placeholder="Address"></textarea>
+              <textarea class="textarea is-dark" placeholder="Address"></textarea>
             </div>
           </div>
 
@@ -60,23 +60,28 @@
               </label>
             </div>
           </div>
-        </div>
+
+          <div class="field">
+            <div class="control">
+              <button class="button is-dark">
+                Join
+              </button>
+            </div>
+          </div>
+       </div>
       <!-- TODO: login start -->
         <div class="login" v-bind:class="{'hide': hideIt}">
           <div class="field">
-            <p class="control has-icons-left has-icons-right">
-              <input class="input" type="email" placeholder="Email">
+            <p class="control has-icons-left">
+              <input class="input is-dark" type="email" placeholder="Email">
               <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-check"></i>
               </span>
             </p>
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <input class="input" type="password" placeholder="Password">
+              <input class="input is-dark" type="password" placeholder="Password">
               <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
               </span>
@@ -84,7 +89,7 @@
           </div>
           <div class="field">
             <p class="control">
-              <button class="button is-success">
+              <button class="button is-dark">
                 Login
               </button>
             </p>

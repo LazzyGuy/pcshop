@@ -17,7 +17,7 @@
       <div id="menu12" class="navbar-menu" v-bind:class="{'is-active': homeactive}">
 
         <div class="navbar-start">
-          <div class="control has-icons-right navbar-item">
+          <div class="control has-icons-right navbar-item input-pcshop">
             <input class="input is-medium navbar-item" type="text" placeholder="search here for product">
             <span class="icon is-small is-right search-icon">
               <i class="fas fa-search"></i>
@@ -40,11 +40,13 @@
       </div>
     </nav>
 
+    <drop-down></drop-down>
     <jo-in v-bind:active="joinactive" v-on:closeIt="closeJoin"></jo-in>
-
     <sli-der></sli-der>
 
-
+    <div class="shopping-items">
+      <display-item></display-item>
+    </div>
 
   </div>
 </template>
@@ -53,6 +55,10 @@
   import Navbar from './nav'
   import Join from './loginSign.vue'
   import Slider from './topslider.vue'
+  import DropDown from './dropdown.vue'
+  import dropdownVue from './dropdown.vue';
+  import DisplayItem from './displayitem.vue';
+
   export default {
 
     data() {
@@ -78,7 +84,9 @@
     components: {
       'nav-bar': Navbar,
       'jo-in': Join,
-      'sli-der': Slider
+      'sli-der': Slider,
+      'drop-down': DropDown,
+      'display-item': DisplayItem
     }
 
   }
@@ -98,7 +106,9 @@
   /* .icon{
 		border-left: 1px solid gray;
 	} */
-
+  .input-pcshop{
+    /* height: 20px; */
+  }
   .logo-my .pc {
     height: 40px;
     width: 40px;
@@ -133,7 +143,9 @@
   .cart-btn i {
     font-size: 20px;
   }
-
+  .shopping-items{
+    margin-top: 10px;
+  }
 
 
 
