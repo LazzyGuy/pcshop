@@ -3,14 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import '../node_modules/bulma/css/bulma.css'
-//import slider from 'vue-easy-slider'
-
+import {store} from '../store/index'
 Vue.config.productionTip = false
-
-//Vue.use('slider')
 /* eslint-disable no-new */
 new Vue({
+  store: store,
   el: '#app',
   router,
   components: { App },

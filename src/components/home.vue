@@ -1,154 +1,88 @@
 <template>
   <div>
-    <nav class="navbar is-dark  is-fixed-top" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item logo-my" href="/">
-          <span class="pc">PC</span> &nbsp;&nbsp;
-          <span class="shop">SHOP</span>
-        </a>
-        <div class="navbar-burger burger" @click="activateMenu" v-bind:class="{'is-active': homeactive}" data-target="menu12">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-
-
-      <div id="menu12" class="navbar-menu" v-bind:class="{'is-active': homeactive}">
-
-        <div class="navbar-start">
-          <div class="control has-icons-right navbar-item input-pcshop">
-            <input class="input is-medium navbar-item" type="text" placeholder="search here for product">
-            <span class="icon is-small is-right search-icon">
-              <i class="fas fa-search"></i>
-            </span>
-          </div>
-        </div>
-
-        <div class="navbar-end">
-
-          <a @click="openJoin" class="navbar-item login-btn">
-            <p>Login & SignUp</p>
-          </a>
-
-          <a href="/login" class="navbar-item cart-btn">
-            <i class="fa fa-shopping-cart"></i>
-          </a>
-
-        </div>
-
-      </div>
-    </nav>
-
-    <drop-down></drop-down>
-    <jo-in v-bind:active="joinactive" v-on:closeIt="closeJoin"></jo-in>
-    <sli-der></sli-der>
-
-    <div class="shopping-items">
-      <display-item></display-item>
+    <nav-bar v-on:desktop="desktop" v-on:laptop="laptop" v-on:hardware="hardware" :hide="true"/>
+    <div class="body-main">
+      <banner :d="d" :l="l" :h="h"/>
+      <div class="bottom">
+          <item-display v-if="d" :itemsDis="itemsD"/>
+          <item-display v-if="l" :itemsDis="itemsL"/>
+          <item-display v-if="h" :itemsDis="itemsH"/>
+      </div>      
     </div>
-
-  </div>
+    <foo-ter />
+  </div>  
 </template>
 
 <script>
-  import Navbar from './nav'
-  import Join from './loginSign.vue'
-  import Slider from './topslider.vue'
-  import DropDown from './dropdown.vue'
-  import dropdownVue from './dropdown.vue';
-  import DisplayItem from './displayitem.vue';
+import navbar from './navbar'
+import banner from './banner'
+import sidePanal from './sidePanal'
+import itemDisplay from './itemDisplay'
+import Footer from './Footer'
+export default {
 
-  export default {
-
-    data() {
-      return {
-        homeactive: false,
-        joinactive: false
-      }
-    },
-
-    methods: {
-      activateMenu: function () {
-        this.homeactive = !this.homeactive;
-      },
-      openJoin: function () {
-        this.joinactive = true
-      },
-      closeJoin: function () {
-        this.joinactive = false
-      }
-
-    },
-
-    components: {
-      'nav-bar': Navbar,
-      'jo-in': Join,
-      'sli-der': Slider,
-      'drop-down': DropDown,
-      'display-item': DisplayItem
+  data(){
+    return{
+      d: true,
+      l: false,
+      h: false,
+      flase: true
     }
+  },
+  methods:{
+    desktop: function(){
+      this.d = true
+      this.l = false
+      this.h = false
+      this.items = this.$store.getters.desktop      
+    },
+    laptop: function(){
+      this.d = false
+      this.l = true
+      this.h = false
+      this.items = this.$store.getters.laptop
+    },
+    hardware: function(){
+      this.d = false
+      this.l = false
+      this.h = true
+      this.items = this.$store.getters.hardware
+    }
+  },
 
+  computed:{
+    itemsD(){
+      return this.$store.getters.desktop
+    },
+    itemsL(){
+      return this.$store.getters.laptop
+    },
+    itemsH(){
+      return this.$store.getters.hardware
+    }
+  },
+
+  components:{
+    'nav-bar': navbar,
+    'banner': banner,
+    'side-panal': sidePanal,
+    'item-display': itemDisplay,
+    'foo-ter': Footer
   }
+  
+}
+
 
 </script>
 
 <style scoped>
-  .home-front {
-    height: 100vh;
-  }
-
-  /* .navbar {
-    padding-left: 20px;
-    padding-right: 20px;
-  } */
-
-  /* .icon{
-		border-left: 1px solid gray;
-	} */
-  .input-pcshop{
-    /* height: 20px; */
-  }
-  .logo-my .pc {
-    height: 40px;
-    width: 40px;
-    color: #000;
-    font-size: 25px;
-    background: #fff;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .logo-my .shop {
-    font-size: 20px;
-  }
-
-  .search-icon {
-    padding-top: 20px;
-    padding-right: 20px;
-    ;
-  }
-
-  .home-front {
-    background: lightcoral;
-  }
-
-  .login-btn p {
-    font-size: 15px;
-    color: gray;
-  }
-
-  .cart-btn i {
-    font-size: 20px;
-  }
-  .shopping-items{
-    margin-top: 10px;
-  }
-
-
-
-
+.body-main{
+  padding: 50px 100px;
+  height: 100%;
+  background: #E6EEFB;
+}
+.bottom{
+  display: flex;  
+}
 
 </style>
